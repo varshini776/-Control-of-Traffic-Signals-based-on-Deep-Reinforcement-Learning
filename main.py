@@ -46,7 +46,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--policy",
-        choices=["greedy", "random", "fixed"],
+        choices=["greedy", "random", "fixed", "ddqn"],
         default="greedy",
         help="Control policy for traffic lights (default: greedy)",
     )

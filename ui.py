@@ -23,15 +23,25 @@ COLORS = {
 
 class TrafficUI:
     def __init__(self, env, policy_name="greedy"):
+
         pygame.init()
+
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
         pygame.display.set_caption("🚦 Advanced Traffic Intersection Simulator")
+
         self.clock = pygame.time.Clock()
+
         self.env = env
+
         self.frame = 0
+
         self.policy_name = policy_name
+
         self.paused = False
 
+        if policy_name == "ddqn":
+            self.load_ddqn_model()
     # --------------------------------------------------
     # DRAWING INFRASTRUCTURE
     # --------------------------------------------------
@@ -206,6 +216,56 @@ class TrafficUI:
             text_rect = pause_text.get_rect(center=(WIDTH // 2, HEIGHT - 30))
             self.screen.blit(pause_text, text_rect)
 
+    
+    def load_ddqn_model(self):
+
+        import torch
+        from dqn_model import DQNNet
+
+        self.model = DQNNet()
+
+        self.model.load_state_dict(torch.load("model.pth"))
+
+        self.model.eval()
+
+    def encode_state(self, obs):
+
+        import numpy as np
+
+        return np.array([
+
+            obs["N"]["straight"],
+            obs["N"]["turn"],
+
+            obs["S"]["straight"],
+            obs["S"]["turn"],
+
+            obs["E"]["straight"],
+            obs["E"]["turn"],
+
+            obs["W"]["straight"],
+            obs["W"]["turn"],
+
+            obs["phase"],
+
+            obs["totals"]["NS"] - obs["totals"]["EW"]
+
+        ], dtype=np.float32)
+
+    def ddqn_action(self, obs):
+
+        import torch
+
+        state = self.encode_state(obs)
+
+        state = torch.FloatTensor(state)
+
+        with torch.no_grad():
+
+            action = self.model(state).argmax().item()
+
+        return action
+
     # --------------------------------------------------
     # MAIN LOOP
     # --------------------------------------------------
@@ -242,9 +302,11 @@ class TrafficUI:
                 elif policy == "fixed":
                     action = fixed_time_policy(self.env._step_count)
 
-                else:  # random
+                elif policy == "random":
                     action = random_policy()
 
+                elif policy == "ddqn":
+                    action = self.ddqn_action(obs)
                 obs, done = self.env.step(action)
                 # Continuous environment - no reset on done
 
