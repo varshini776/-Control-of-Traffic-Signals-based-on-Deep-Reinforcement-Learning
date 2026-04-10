@@ -1,0 +1,51 @@
+
+Running 10 episodes per agent...
+
+  ep= 0 [ fixed] reward=   831.6  thru= 1638  avg_wait=16.13  switches=  50
+  ep= 0 [greedy] reward= -1587.9  thru=  845  avg_wait=48.66  switches=   0
+  ep= 0 [  ddqn] reward=  1329.3  thru= 1646  avg_wait= 6.33  switches= 256
+  ep= 1 [ fixed] reward=   762.8  thru= 1634  avg_wait=17.42  switches=  50
+  ep= 1 [greedy] reward= -1609.9  thru=  842  avg_wait=49.04  switches=   0
+  ep= 1 [  ddqn] reward=  1339.3  thru= 1646  avg_wait= 6.13  switches= 283
+  ep= 2 [ fixed] reward=   799.5  thru= 1563  avg_wait=15.27  switches=  50
+  ep= 2 [greedy] reward= -1659.2  thru=  784  avg_wait=48.86  switches=   0
+  ep= 2 [  ddqn] reward=  1276.4  thru= 1575  avg_wait= 5.97  switches= 264
+  ep= 3 [ fixed] reward=   767.5  thru= 1589  avg_wait=16.43  switches=  50
+  ep= 3 [greedy] reward= -1622.1  thru=  804  avg_wait=48.52  switches=   0
+  ep= 3 [  ddqn] reward=  1291.9  thru= 1603  avg_wait= 6.22  switches= 265
+  ep= 4 [ fixed] reward=   791.2  thru= 1648  avg_wait=17.14  switches=  50
+  ep= 4 [greedy] reward= -1619.0  thru=  825  avg_wait=48.88  switches=   0
+  ep= 4 [  ddqn] reward=  1327.5  thru= 1664  avg_wait= 6.73  switches= 272
+  ep= 5 [ fixed] reward=   751.7  thru= 1583  avg_wait=16.63  switches=  50
+  ep= 5 [greedy] reward= -1662.2  thru=  767  avg_wait=48.58  switches=   0
+  ep= 5 [  ddqn] reward=  1289.2  thru= 1598  avg_wait= 6.18  switches= 275
+  ep= 6 [ fixed] reward=   823.9  thru= 1619  avg_wait= 15.9  switches=  50
+  ep= 6 [greedy] reward= -1595.3  thru=  825  avg_wait=48.41  switches=   0
+  ep= 6 [  ddqn] reward=  1309.8  thru= 1630  avg_wait=  6.4  switches= 274
+  ep= 7 [ fixed] reward=   781.4  thru= 1604  avg_wait=16.45  switches=  50
+  ep= 7 [greedy] reward= -1618.7  thru=  807  avg_wait=48.51  switches=   0
+  ep= 7 [  ddqn] reward=  1302.8  thru= 1622  avg_wait= 6.38  switches= 266
+  ep= 8 [ fixed] reward=   747.6  thru= 1618  avg_wait=17.41  switches=  50
+  ep= 8 [greedy] reward= -1600.1  thru=  840  avg_wait= 48.8  switches=   0
+  ep= 8 [  ddqn] reward=  1325.1  thru= 1635  avg_wait=  6.2  switches= 288
+  ep= 9 [ fixed] reward=   761.1  thru= 1563  avg_wait=16.04  switches=  50
+  ep= 9 [greedy] reward= -1651.9  thru=  774  avg_wait=48.52  switches=   0
+  ep= 9 [  ddqn] reward=  1269.3  thru= 1573  avg_wait= 6.07  switches= 265
+
+=================================================================
+METRIC                    FIXED     GREEDY       DDQN
+=================================================================
+Avg reward              781.8    -1622.6     1306.1 *
+Avg throughput         1605.9      811.3     1619.2 *
+Avg wait                 16.5       48.7        6.3 *
+Avg switches             50.0        0.0 *    270.8  
+=================================================================
+* = best
+
+Phase distribution (% of steps):
+                         P0     P1     P2     P3
+  fixed               25.8%  26.0%  24.2%  24.0%
+  greedy             100.0%   0.0%   0.0%   0.0%
+  ddqn                44.5%  26.8%  17.1%  11.6%
+
+DDQN beats both baselines in 10/10 episodes (reward)
